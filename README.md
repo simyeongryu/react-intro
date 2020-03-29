@@ -690,3 +690,67 @@ CSS ...
 
 글자르기.
 
+# #5.0 Deploying to Github Pages
+```shell
+$ npm i gh-pages
+```
+
+package.json에 "homepage" key 추가하고 value에 "https://simyeongryu.github.io/react-intro/" 추가
+(깃헙페이지 url/저장소이름)
+
+scripts에 deploy 추가하고
+
+npm run build를 다시 명령하면
+
+build 폴더가 생긴다.
+
+이 폴더를 깃헙페이지에 올린다.
+
+predeploy라는 명령어도 만든다.
+
+deploy하면 predeploy가 먼저 실행된다.
+
+이때 `pre`다음의 이름이 같아야 한다.
+
+package.json
+```json
+{
+  "name": "react-intro",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
+    "gh-pages": "^2.2.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "homepage": "https://simyeongryu.github.io/react-intro/"
+}
+
+```
