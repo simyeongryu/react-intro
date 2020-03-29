@@ -196,5 +196,12 @@ const App = () => {
 };
 
 export default App;
-
 ```
+
+# #2.2 Dynamic Component Generation
+
+웹사이트에 동적 데이터를 추가하자. 내가 수동으로 작성해야 하는 데이터 말고.
+
+`map()` 메소드를 이용해서 object에 담긴 값들을 쉽게 렌더링할 수 있다.
+
+JSX 안에서 JS를 사용하고 싶다면 `{}`를 사용한다.
