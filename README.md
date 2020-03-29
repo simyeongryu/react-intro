@@ -1,68 +1,43 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Intro: Making Simple Movie App
 
-## Available Scripts
+# #0.1 Requirements
 
-In the project directory, you can run:
+`node.js`, `npm`, `npx`, `git`을 설치해야 한다.
 
-### `yarn start`
+1. `node.js`, `npm` 설치
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`brew`를 이용해서 `node.js`를 설치하면 `npm`은 동시에 설치된다. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+설치 후 아래 명령어로 설치가 되었는지 확인한다.
 
-### `yarn test`
+```shell
+$ node -v
+$ npm -v
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. `npx` 설치
 
-### `yarn build`
+`npm` 을 이용해서 `npx`을 전역에 설치한다.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+전역으로 설치하기 위해서는 `sudo` 명령어가 필요하다.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```shell
+$ sudo npm i npx -g
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# #1.0 Creating your first React App
 
-### `yarn eject`
+`creat-react-app` 명령어를 이용해서 react app을 만든다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+babel과 webpack 등 초기 설정을 알아서 해준다.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```shell
+$ npx creat-react-app 폴더이름
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+react 프로젝트 폴더가 만들어지면
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`package.json` 안에 `eject`, `test` 명령어를 삭제한다. 이 프로젝트에는 불필요하다.
 
-## Learn More
+# #1.1 Creating a Github Repository
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
