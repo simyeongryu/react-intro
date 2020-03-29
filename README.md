@@ -470,3 +470,58 @@ class App extends React.Component {
 
 export default App;
 ```
+
+# #4.0 Fetching Movies from API
+
+api에서 data를 가져오는 방법은 fetch를 사용하는 것이다.
+
+여기선 axios라는 라이브러리를 사용한다.
+
+조금 더 보강된 fetch라고 생각하자.
+
+```shell
+$ npm i axios
+```
+
+기본적으로는 YTS에서 만든 API를 사용한다. 
+
+> https://yts.mx/
+
+API 주소
+> https://yts.mx/api/v2/list_movies.json
+
+
+근데 YTS는 불법영화를 대상으로 순위를 매기는 불법적인 행위를 하기 때문에 API의 URL이 변경될 소지가 크다. 따라서 NomadCoder가 새로 만든 API 주소를 사용한다. (아래 API 사용) 
+
+> https://yts-proxy.now.sh/list_movies.json
+
+크롬의 JSON View 라는 확장 프로그램을 반드시 다운로드한다.
+
+```js
+import React from "react";
+import axios from "axios";
+
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    movies: []
+  };
+
+  // api에서 데이터를 다 가져오고나서 다음 작업을 실행하기 위해 async-await 사용
+  getMovies = async () => {
+    const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+  };
+
+  componentDidMount() {
+    this.getMovies();
+  }
+
+  render() {
+    const { isLoading } = this.state;
+    console.log(this.state);
+    return <div>{isLoading ? "Loading..." : "We are ready"}</div>;
+  }
+}
+
+export default App;
+```
