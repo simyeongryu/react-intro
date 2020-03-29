@@ -263,3 +263,37 @@ export default App;
 React 에서 list내 요소들은 각각의 고유한 key 값을 갖고 있어야 한다. 
 
 즉, props에 key값을 줘야 한다. react 내부에서 사용하기 위한 값이다.
+
+# #2.4 Protection with PropTypes
+
+> 참고 : https://reactjs-kr.firebaseapp.com/docs/typechecking-with-proptypes.html
+
+`prop-types` 설치 
+
+내가 전달받은 props가 내가 원하는 props인지 확인해주는 모듈
+
+```shell
+$ npm i prop-types
+```
+
+```js
+// Food component의 props를 확인한다.
+const Food = ({ name, image, rating }) => {
+  // JSX 안에서 변수는 {}으로 사용한다.
+  return (
+    <div>
+      <h3>I like {name}</h3>
+      <h4>rating: {rating}/5.0</h4>
+      <img src={image} alt={name}></img>
+    </div>
+  );
+};
+
+// Food의 props를 확인한다.
+// 메소드 이름은 반드시 `propTypes 여야 한다.`
+Food.propTypes = {
+  name: PropTypes.string.isRequired, // string, 필수 prop
+  image: PropTypes.string.isRequired, // string, 필수 prop
+  rating: PropTypes.number // number, 선택 prop
+};
+```
