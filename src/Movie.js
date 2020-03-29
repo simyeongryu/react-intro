@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Movie.css";
 
 // App.js에서 전달받은 props 이용
 const Movie = ({ id, year, title, summary, poster, rating, genres }) => {

@@ -682,3 +682,7 @@ const Movie = ({ id, year, title, summary, poster, rating, genres }) => {
 };
 ```
 
+# #4.4 Styles Timelapse
+
+CSS ...
+
