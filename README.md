@@ -507,7 +507,7 @@ class App extends React.Component {
     movies: []
   };
 
-  // api에서 데이터를 다 가져오고나서 다음 작업을 실행하기 위해 async-await 사용
+  /// api에서 데이터를 다 가져오고나서 다음 작업을 실행하기 위해 async-await 사용
   getMovies = async () => {
     const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
   };
