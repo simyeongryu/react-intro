@@ -648,3 +648,37 @@ const Movie = ({ id, year, title, summary, poster, rating }) => {
 거의 사용되지 않는다.
 
 프로젝트 폴더에 CSS 파일을 만들고 참조한다. 이때는 함수를 참조받는 것이 아니기 때문에 파일 그대로 import 한다
+
+```
+BrowserslistError: Unknown browser query `baidu undefined`. Maybe you are using old Browserslist or made typo in query.
+```
+
+처럼 broswerlist Error가 발생하면 서버를 끄고 `yarn build`를 다시 한다.
+
+> [참고](https://stackoverflow.com/questions/52939103/browserslisterror-unknown-browser-query-dead-in-react-express-app)
+
+# #4.3 Adding Genres
+
+JSX는 HTML처럼 보이지만 JS다. 즉, JS로 구현하는 HTML이라고 생각하면 된다. (virtual DOM)
+
+따라서 html 요소에 attribute를 주고 싶다면 css가 아니라 js처럼 줘야한다. class가 아니라 className, label의 for는 htmlFor
+
+```js
+// App.js에서 전달받은 props 이용
+const Movie = ({ id, year, title, summary, poster, rating, genres }) => {
+  return (
+    <div className="movie">
+      <label htmlFor="lalal"></label>
+      <img src={poster} alt={title} title={title} />
+      <div className="movie__data">
+        <h3 className="movie__title">{title}</h3>
+        <h5 className="movie__year">{year}</h5>
+        <h5 className="movie__rating">평점: {rating}/10.0</h5>
+        <p className="movie__summary">{summary}</p>
+        <p className="movie__genre">{genres}</p>
+      </div>
+    </div>
+  );
+};
+```
+
