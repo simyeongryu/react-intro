@@ -686,3 +686,7 @@ const Movie = ({ id, year, title, summary, poster, rating, genres }) => {
 
 CSS ...
 
+# #4.5 Cutting the summary
+
+글자르기.
+
