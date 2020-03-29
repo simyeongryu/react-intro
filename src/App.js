@@ -1,4 +1,5 @@
 import React from "react";
+import { findAllByDisplayValue } from "@testing-library/react";
 // App이 전달한 props는 Object로 전달되기 때문에
 // 비구조화가 가능하다. props 내에서 fav만 골라서 사용
 const Food = ({ name, image }) => {
@@ -6,7 +7,7 @@ const Food = ({ name, image }) => {
   return (
     <div>
       <h3>I like {name}</h3>
-      <img src={image}></img>
+      <img src={image} alt={name}></img>
     </div>
   );
 };
@@ -36,10 +37,10 @@ const foodILike = [
 
 const App = () => {
   return (
-    <div className="App">
-      {foodILike.map(food => (
-        <Food name={food.name} image={food.image} />
-      ))}
+    <div>
+      {foodILike.map((dish, index) => {
+        return <Food key={index} name={dish.name} image={dish.image} />;
+      })}
     </div>
   );
 };
