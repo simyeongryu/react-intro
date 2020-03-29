@@ -409,3 +409,37 @@ minus = () => {
 
 setState를 호출할 때마다 react는 새로운 state와 함께 render 함수를 재호출한다.
 
+# #3.2 Component Life Cycle
+
+> 참고: https://ko.reactjs.org/docs/react-component.html
+
+## `Mounting` : 컴포넌트가 mount될 때 사용되는 함수들
+
+Mouning: component가 browser에 나타나는 것.
+
+여러 개가 있지만 constructor, render, componentDidMount 만 소개
+
+mount 되기 전에 `constructor()` 함수가 실행되고, 화면에 출력될 때 `render()`를 호출한다.
+
+constructor() - class 만들 때 호출(JS)
+
+`render()`이후에 해당 컴포넌트가 render 됐다면 `componentDidMount()`을 호출한다.
+
+## `Updating` : 컴포넌트의 내용이 수정될 때 사용되는 함수들
+
+해당 예제에서 Add나 Minus버튼을 누르면 화면에 출력되는 결과가 달라진다. 그게 component가 update 되는 것.
+
+
+즉 setState를 호출할 때마다 실행
+
+`render()` -> `componentDidUpdate()` 순으로 실행
+
+그 사이 여러 개가 있지만 일단 이 둘만 소개
+
+## `Unmouting` : 페이지를 이동하거나 해서 컴포넌트가 종료될 때 사용되는 함수
+
+마운트 해제 아래 메서드는 컴포넌트가 DOM 상에서 제거될 때에 호출
+
+`componentWillUnmount()`
+
+
