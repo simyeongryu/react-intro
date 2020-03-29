@@ -1,11 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./Movie.css";
 
 // App.js에서 전달받은 props 이용
 const Movie = ({ id, year, title, summary, poster, rating }) => {
   return (
-    <div>
-      <h5>{title}</h5>
+    <div className="movie">
+      <img src={poster} alt={title} title={title} />
+      <div className="movie__data">
+        <h3 className="movie__title" style={{ backgroundColor: "red" }}>
+          {title}
+        </h3>
+        <h5 className="movie__year">{year}</h5>
+        <h5 className="movie__rating">평점: {rating}/10.0</h5>
+        <p className="movie__summary">{summary}</p>
+      </div>
     </div>
   );
 };

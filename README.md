@@ -528,3 +528,123 @@ export default App;
 
 # #4.1 Rendering the Movies
 
+App.js
+```js
+import React from "react";
+import axios from "axios";
+import Movie from "./Movie";
+
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    movies: []
+  };
+
+  getMovies = async () => {
+    try {
+      // 비구조화 chaing
+      const {
+        data: {
+          data: { movies }
+        }
+      } = await axios.get(
+        // api 문서에서 사용가능한 변수를 찾아 사용할 수 있다.
+        // rating을 기준으로 정렬
+        "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
+      );
+
+      // axios에서 가져온 movies를 state의 movies 배열에 집어넣는다.
+      this.setState({ movies, isLoading: false });
+    } catch (e) {
+      console.log(`Error: ${e}`);
+    }
+  };
+
+  componentDidMount() {
+    this.getMovies();
+  }
+
+  render() {
+    const { isLoading, movies } = this.state;
+    return (
+      <div>
+        {isLoading
+          ? "Loading..."
+          : movies.map(movie => {
+              return (
+                <Movie
+                  key={movie.id}
+                  id={movie.id}
+                  year={movie.year}
+                  title={movie.title}
+                  summary={movie.summary}
+                  poster={movie.medium_cover_image}
+                  rating={movie.rating}
+                />
+              );
+            })}
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+Movie.js
+```js
+import React from "react";
+import PropTypes from "prop-types";
+
+// App.js에서 전달받은 props 이용
+const Movie = ({ id, year, title, summary, poster, rating }) => {
+  return (
+    <div>
+      <h5>{title}</h5>
+    </div>
+  );
+};
+
+// App.js 에서 받아오는 props 검사
+Movie.propTypes = {
+  id: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired
+};
+
+export default Movie;
+```
+
+# #4.2 Styling the Movies
+
+```js
+import React from "react";
+import PropTypes from "prop-types";
+import "./Movie.css";
+
+// App.js에서 전달받은 props 이용
+const Movie = ({ id, year, title, summary, poster, rating }) => {
+  return (
+    <div className="movie">
+      <img src={poster} alt={title} title={title} />
+      <div className="movie__data">
+        <h3 className="movie__title" style={{ backgroundColor: "red" }}>
+          {title}
+        </h3>
+        <h5 className="movie__year">{year}</h5>
+        <h5 className="movie__rating">평점: {rating}/10.0</h5>
+        <p className="movie__summary">{summary}</p>
+      </div>
+    </div>
+  );
+};
+```
+
+위와 같이 JSX 에서 `{{}}` 을 이용해서 CSS를 적용할 수도 있지만,
+
+거의 사용되지 않는다.
+
+프로젝트 폴더에 CSS 파일을 만들고 참조한다. 이때는 함수를 참조받는 것이 아니기 때문에 파일 그대로 import 한다
