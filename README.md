@@ -297,3 +297,60 @@ Food.propTypes = {
   rating: PropTypes.number // number, 선택 prop
 };
 ```
+
+# #3.0 Class Components and State
+
+함수 컴포넌트과 class 컴포넌트 
+
+class 형은 return 대신 render 메소드를 사용한다.
+
+```js
+// class 형 컴포넌트를 만들때 반드시 상속받아야한다.
+class App extends React.Component {
+  render() {
+    return <h1>Class Component</h1>;
+  }
+}
+```
+
+react는 class component 내 render()를 실행한다.
+
+class component는 state를 구현하기 위해 필요하다.
+
+state는 object고 component의 data를 갖고 있다. 그리고 그 data는 변한다.
+
+즉, 가변적인 데이터를 다루기 위해서 state를 사용한다.
+
+```js
+import React from "react";
+import PropTypes from "prop-types";
+
+// class 형 컴포넌트를 만들때 반드시 상속받아야한다.
+class App extends React.Component {
+  state = {
+    count: 0
+  };
+
+  add = () => {
+    console.log("add");
+  };
+  minus = () => {
+    console.log("minus");
+  };
+
+  render = () => {
+    return (
+      <div>
+        <h1>The number is {this.state.count}</h1>
+        {/** onClick: react의 addEventListner("click") */}
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    );
+  };
+}
+
+export default App;
+```
+
+App에서 data를 어떻게 바꿀까?
