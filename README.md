@@ -132,3 +132,69 @@ import React from "react";
 index.js는 오직 단 한 개의 component만을 rendering 해야 한다. 그 component가 App.js
 
 즉 우리가 만드는 component 들은 모두 App.js에 넣어야 한다.
+
+# #2.1 Reusable Components with JSX + Props
+
+재사용 가능한 component를 만들고 수없이 반복해서 사용할 수 있다.
+
+App.js 에서 다른 component를 사용할 때, 어떤 값들을 지정해서 해당 component에 전달할 수 있다. props(properties)라고 한다.
+
+```js
+import React from "react";
+
+const Food = props => {
+  console.log(props);
+  /** 아래 내용 출력
+    fav="kimchi"
+    something={true}
+    lalalal={["hello", 1, 2, 3, 4, true]} 
+    */
+  return <h3>Potato</h3>;
+};
+
+const App = () => {
+  return (
+    <div className="App">
+      <h1>Hello</h1>
+      <Food
+        fav="kimchi"
+        something={true}
+        lalalal={["hello", 1, 2, 3, 4, true]}
+      />
+    </div>
+  );
+};
+
+export default App;
+```
+
+Component는 JSX를 반환하는 함수이며 대문자로 시작해서 naming한다.
+
+JSX는 HTML+JS다. 
+
+부모 component는 자신 cpnt에서 props를 통해 data를 전달한다.
+
+```js
+import React from "react";
+// App이 전달한 props는 Object로 전달되기 때문에
+// 비구조화가 가능하다. props 내에서 fav만 골라서 사용
+const Food = ({ fav }) => {
+  // JSX 안에서 변수는 {}으로 사용한다.
+  return <h3>I like {fav}</h3>;
+};
+
+const App = () => {
+  return (
+    <div className="App">
+      <h1>Hello</h1>
+      <Food fav="막창" />
+      <Food fav="라면" />
+      <Food fav="삼겹살" />
+      <Food fav="소곱창" />
+    </div>
+  );
+};
+
+export default App;
+
+```
