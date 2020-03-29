@@ -525,3 +525,6 @@ class App extends React.Component {
 
 export default App;
 ```
+
+# #4.1 Rendering the Movies
+
