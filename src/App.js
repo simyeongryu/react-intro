@@ -8,10 +8,14 @@ class App extends React.Component {
   };
 
   add = () => {
-    console.log("add");
+    // state의 값을 변경시키는 가장 좋은 방법. callback을 이용.
+    this.setState(current => ({ count: current.count + 1 }));
   };
+
   minus = () => {
-    console.log("minus");
+    // 이렇게 작성하면 우리의 값이 state의 값에 의존하기 때문에 별로 좋지 않다??
+    // 나중에 여러 문제가 발생한다.
+    this.setState({ count: this.state.count - 1 });
   };
 
   render = () => {

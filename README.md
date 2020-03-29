@@ -317,7 +317,7 @@ react는 class component 내 render()를 실행한다.
 
 class component는 state를 구현하기 위해 필요하다.
 
-state는 object고 component의 data를 갖고 있다. 그리고 그 data는 변한다.
+`state`는 object고 component의 data를 갖고 있다. 그리고 그 data는 변한다. (아마도 `React.Component`에 미리 정의되어있는 프로퍼티 같다.)
 
 즉, 가변적인 데이터를 다루기 위해서 state를 사용한다.
 
@@ -354,3 +354,58 @@ export default App;
 ```
 
 App에서 data를 어떻게 바꿀까?
+
+# #3.1 All you need to know about State
+
+```js
+import React from "react";
+import PropTypes from "prop-types";
+
+// class 형 컴포넌트를 만들때 반드시 상속받아야한다.
+class App extends React.Component {
+  state = {
+    count: 0
+  };
+
+  add = () => {
+    this.state.count = 1;
+  };
+  minus = () => {
+    this.state.count = -1;
+  };
+
+  render = () => {
+    return (
+      <div>
+        <h1>The number is {this.state.count}</h1>
+        {/** onClick: react의 addEventListner("click") */}
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    );
+  };
+}
+
+export default App;
+```
+
+위 예제처럼 state의 값을 직접적으로 변경하려고 하면
+```
+Do not mutate state directly. Use setState()
+```
+
+와 같은 경고메세지를 받고 작동하지 않는다.(render 함수를 사용하지 않는다.)
+
+```js
+add = () => {
+    this.setState({ count: 1 });
+  };
+  
+minus = () => {
+  this.setState({ count: -1 });
+};
+```
+이렇게 하면 render 함수가 재호출되면서 작동한다.
+
+setState를 호출할 때마다 react는 새로운 state와 함께 render 함수를 재호출한다.
+
