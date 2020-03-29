@@ -442,4 +442,31 @@ constructor() - class 만들 때 호출(JS)
 
 `componentWillUnmount()`
 
+# #3.3 Planning the Movie Component
 
+```js
+import React from "react";
+
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    movies: []
+  };
+  // 여기서 data를 fetch 하고 그게 완료되면 movie를 render한다.(component update)
+  componentDidMount() {
+    setTimeout(() => {
+      // 컴포넌트가 처음 실행됐을 때 state엔 isLoading과 movies밖에 없지만
+      // 6초 후에는 book 이라는 프로퍼티가 새로 생긴다.
+      this.setState({ isLoading: false, book: true });
+    }, 6000);
+  }
+
+  render() {
+    const { isLoading } = this.state;
+    console.log(this.state);
+    return <div>{isLoading ? "Loading..." : "We are ready"}</div>;
+  }
+}
+
+export default App;
+```
