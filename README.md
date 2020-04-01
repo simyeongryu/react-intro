@@ -962,3 +962,10 @@ export default Movie;
 ```
 
 이런식으로 state에 담아 전달한다.
+
+# #6.4 Redirecting
+
+`/movie-detail`로 영화를 클릭해서 이동하면 state에 우리가 원하는 값이 담기지만  url에 직접 쳐서 들어가면 undefined가 담긴다.
+
+따라서 state가 undefined면 home으로 redirect 시켜버리자.
+

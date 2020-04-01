@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 // App.js에서 전달받은 props 이용
-const Movie = ({ year, title, summary, poster, rating, genres }) => {
+const Movie = ({ id, year, title, summary, poster, rating, genres }) => {
   // 줄거리 줄임 제어
   const handleSummary = e => {
     if (e.target.innerHTML.includes("...")) {
@@ -12,12 +12,13 @@ const Movie = ({ year, title, summary, poster, rating, genres }) => {
       e.target.innerHTML = `${summary.slice(0, 140)}...`;
     }
   };
-
+  // 변수값을 이용해서 이동하기
   return (
     <Link
       to={{
-        pathname: "/movie-detail",
+        pathname: `/movie/${id}`,
         state: {
+          id,
           year,
           title,
           summary,

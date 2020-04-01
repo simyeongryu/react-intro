@@ -13,7 +13,7 @@ const App = () => {
       {/* 누군가 path로 접근하면 component를 마운트 */}
       <Route exact path="/" component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/movie-detail" component={MovieDetail} />
+      <Route path="/movie:id" component={MovieDetail} />
     </BrowserRouter>
   );
 };
