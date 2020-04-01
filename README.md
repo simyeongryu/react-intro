@@ -1020,7 +1020,7 @@ const App = () => {
       <Route exact path="/" component={Home} />
       <Route path="/about" component={About} />
       {/* 변수값을 url값으로 주기 */}
-      <Route path="/movie:id" component={MovieDetail} />
+      <Route path="/movie/:id" component={MovieDetail} />
     </BrowserRouter>
   );
 };

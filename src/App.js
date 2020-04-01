@@ -13,7 +13,8 @@ const App = () => {
       {/* 누군가 path로 접근하면 component를 마운트 */}
       <Route exact path="/" component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/movie:id" component={MovieDetail} />
+      {/* 변수값을 url값으로 주기 */}
+      <Route path="/movie/:id" component={MovieDetail} />
     </BrowserRouter>
   );
 };

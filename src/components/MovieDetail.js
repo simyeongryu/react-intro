@@ -13,6 +13,7 @@ class MovieDetail extends React.Component {
 
   render = () => {
     const { location } = this.props;
+    console.log(location);
     // location.state 값이 있으면 정상값 return
     // 없으면 null 리턴 후 componentDidMount에 의해 home 으로 redirect.
     if (location.state) {
