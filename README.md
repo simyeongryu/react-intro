@@ -1096,3 +1096,7 @@ Movie.propTypes = {
 
 export default Movie;
 ```
+
+# #6.5 Conclusions
+
+지금은 home으로 이동할 때마다 로딩을 해야 하지만 redux등을 이용하면 api에서 받아오는 데이터들을 어딘가에 저장하고 재활용하기 때문에 이런 현상을 없애줄 수 있다.
