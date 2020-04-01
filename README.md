@@ -754,3 +754,51 @@ package.json
 }
 
 ```
+
+# #6.0 Getting Ready for the Router
+
+상단에 메뉴 만들고 네비게이션을 만들자.
+
+```
+$ yarn add react-router-dom
+```
+
+파일 및 폴더 정리
+
+src에 components, routes 폴더 생성
+
+components 폴더로 Movie.js 이동
+
+routes폴더로 About.js, Home.js 생성한 뒤 App.js의 내용을 Home.js에 붙여넣는다.
+
+# #6.1 Building the Router
+
+라우터 만들기
+
+라우터는 컴포넌트인데, 경로에 따라 특정 컴포넌트를 마운트한다.
+
+리액트는 각각의 라우트를 렌더링할 때 중복된 url을 모두 렌더링한다.
+
+예를 들어 "/"와 "/about"과 "/about/this"라는 세 가지 경로에 세 가지 라우트가 있고 "/about/this" 로 접근하면 세 개가 전부 렌더링 된다. 이 url안에 /, /about, /about/this가 모두 있기 때문이다.
+
+따라서 exact={true}, 혹은 exact path를 써주면 이런 현상은 사라진다.
+
+```js
+import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import About from "./routes/About";
+
+const App = () => {
+  return (
+    {/* url에 #이 생긴다. */}
+    <HashRouter>
+      {/* 누군가 path로 접근하면 component를 마운트 */}
+      <Route exact path="/" component={Home} />
+      <Route path="/about" component={About} />
+    </HashRouter>
+  );
+};
+
+export default App;
+```
