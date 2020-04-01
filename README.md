@@ -854,3 +854,111 @@ rouet는 HashRouter와 BrowserRouter가 있다. HashRouter는 # 이 url에 생�
 
 HashRouter는 github page에 올리기 쉽다.
 
+# #6.3 Sharing Props Between Routes
+
+디테일 페이지 만들기
+
+route props를 이용하자
+
+라우터에 있는 모든 라우트들은 props를 갖는다. 
+
+Link 의 to props를 객체로도 보낼 수 있다.
+
+state를 지정해서 보내면 props.location.state에 값을 보낼 수 있다.
+
+```js
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Navigation.css";
+
+const Navigation = () => {
+  return (
+    <div className="nav">
+      <Link to="/">Home</Link>
+      <Link
+        to={{
+          pathname: "/about",
+          state: {
+            fromNavigation: true
+          }
+        }}
+      >
+        About
+      </Link>
+    </div>
+  );
+};
+
+export default Navigation;
+```
+
+따라서 영화를 클리하면 그 영화의 정보를 상세페이지로 넘기고 싶다면
+
+```js
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
+// App.js에서 전달받은 props 이용
+const Movie = ({ year, title, summary, poster, rating, genres }) => {
+  // 줄거리 줄임 제어
+  const handleSummary = e => {
+    if (e.target.innerHTML.includes("...")) {
+      e.target.innerHTML = summary;
+    } else {
+      e.target.innerHTML = `${summary.slice(0, 140)}...`;
+    }
+  };
+
+  return (
+    <Link
+      to={{
+        pathname: "/movie-detail",
+        state: {
+          year,
+          title,
+          summary,
+          poster,
+          rating,
+          genres
+        }
+      }}
+    >
+      <div className="movie">
+        <img src={poster} alt={title} title={title} />
+        <div className="movie__data">
+          <h3 className="movie__title">{title}</h3>
+          <h5 className="movie__year">{year}</h5>
+          <h5 className="movie__rating">평점: {rating}/10.0</h5>
+          <ul className="movie__genres">
+            {genres.map((genre, index) => (
+              <li key={index} className="genres__genre">
+                {genre}
+              </li>
+            ))}
+          </ul>
+          <p className="movie__summary" onClick={handleSummary}>
+            {summary.slice(0, 140)}...
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+// App.js 에서 받아오는 props 검사
+Movie.propTypes = {
+  id: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired // genre는 필수 prop, array고 그 요소는 string이다.
+};
+
+export default Movie;
+
+```
+
+이런식으로 state에 담아 전달한다.
