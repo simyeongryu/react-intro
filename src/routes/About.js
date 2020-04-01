@@ -1,7 +1,16 @@
 import React from "react";
+import "./About.css";
 
 const About = () => {
-  return <span>저는 영화를 사랑합니다. 이건 그 결과입니다.</span>;
+  return (
+    <div className="about__container">
+      <span>
+        “Maybe I will never be all the things that I wanna to be <br />
+        Now is not the time to cry, now is the time to find out why”
+      </span>
+      <span>− Live Forever by Oasis</span>
+    </div>
+  );
 };
 
 export default About;

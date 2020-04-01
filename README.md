@@ -781,7 +781,7 @@ routes폴더로 About.js, Home.js 생성한 뒤 App.js의 내용을 Home.js에 �
 
 예를 들어 "/"와 "/about"과 "/about/this"라는 세 가지 경로에 세 가지 라우트가 있고 "/about/this" 로 접근하면 세 개가 전부 렌더링 된다. 이 url안에 /, /about, /about/this가 모두 있기 때문이다.
 
-따라서 exact={true}, 혹은 exact path를 써주면 이런 현상은 사라진다.
+따라서 exact={true}, 혹은 exact path를 사용한다.
 
 ```js
 import React from "react";
@@ -802,3 +802,55 @@ const App = () => {
 
 export default App;
 ```
+
+# #6.2 Building the Navigation
+
+네비게이션 만들기. 모든 화면에 만들자.
+
+```js
+import React from "react";
+
+const Navigation = () => {
+  return (
+    <div>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+    </div>
+  );
+};
+
+export default Navigation;
+```
+위와 같이 `<a>`를 사용하면 새로고침이 된다. 
+
+React는 새로고침없이 페이지를 이동하는 게 핵심이다.
+
+따라서 아래와 같이 `react-router-dom`의 `<Link>`를 사용한다.
+```js
+import React from "react";
+import { Link } from "react-router-dom";
+
+const Navigation = () => {
+  return (
+    <div>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+    </div>
+  );
+};
+
+export default Navigation;
+```
+
+Link는 router 안에서 사용해야만 한다. 예제에서는 App에 Router가 있고, 그 안에 Navigation을 사용했기 때문에 가능하다. 
+```
+Link -> 해당 경로로 새로고침 없이 이동한다.
+
+Route -> 경로마다 마운트할 컴포넌트를 지정한다.
+
+Router -> Route에 지정된 것을 실행한다.
+```
+rouet는 HashRouter와 BrowserRouter가 있다. HashRouter는 # 이 url에 생기고 BrowserRouter는 없다. 
+
+HashRouter는 github page에 올리기 쉽다.
+
